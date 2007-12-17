@@ -13,7 +13,6 @@ Group:		Games/Arcade
 Source:		%name-%version.tar.bz2
 
 URL:		http://www.psc.edu/~smp/a3d/
-BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	Mesa-common-devel
 
 %description
