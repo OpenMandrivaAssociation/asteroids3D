@@ -31,14 +31,15 @@ perl -pi -e 's,/usr/X11R6/lib,%{_prefix}/X11R6/%{_lib},' Makefile
 rm -rf $RPM_BUILD_ROOT
 install -m755 %{name} -D %buildroot/%{_gamesbindir}/%{name}
 
-%{__install} -d $RPM_BUILD_ROOT%{_menudir}
-%{__cat} <<EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}):command="%{_gamesbindir}/%{name}" \
-                icon=arcade_section.png.png \
-                needs="x11" \
-                section="Amusement/Arcade" \
-                title="Asteroids3D"\
-                longtitle="%{Summary}"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Exec=%{_gamesbindir}/%{name}                
+Icon=arcade_section
+Categories=Game;ArcadeGame;                
+Name=Asteroids3D                
+Comment=%{Summary}
 EOF
 
 %post
@@ -53,7 +54,7 @@ rm -fr %buildroot
 %files
 %defattr (644,root,root,755)
 %doc CHANGELOG COPYRIGHT README
-%{_menudir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
 %defattr (755,root,root,755)
 %{_gamesbindir}/%{name}
 
