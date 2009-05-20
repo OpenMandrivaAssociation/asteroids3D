@@ -1,18 +1,16 @@
 %define	name	asteroids3D
-%define	version	0.2.2
-%define	release	%mkrel 8
+%define	version	0.5.1
+%define	release	%mkrel 1
 %define	Summary	A 3D, first-person game of blowing up asteroids
 
 Name:		%{name}
 Summary:	%{Summary}
 Version:	%{version}
 Release:	%{release}
-License:	GPL
+License:	GPLv2+
 Group:		Games/Arcade
-
-Source:		%name-%version.tar.bz2
-
-URL:		http://www.psc.edu/~smp/a3d/
+Source:		http://jengelh.medozas.de/files/as3d/%name-%version.tar.bz2
+URL:		http://jengelh.medozas.de/projects/as3d/	
 BuildRoot:	%_tmppath/%name-%version-%release-root
 BuildRequires:	Mesa-common-devel
 
@@ -22,24 +20,24 @@ The graphics more accurately reflect the future position of the
 targeted asteroid and provide information about closure rate.
 
 %prep
-%setup -q -n %name
-perl -pi -e 's,/usr/X11R6/lib,%{_prefix}/X11R6/%{_lib},' Makefile
+%setup -q 
 
 %build
-%make CC="gcc %optflags -O3"
+%configure --with-gamesdir=%_gamesbindir --with-gamedatadir=%_gamesdatadir/%name
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -m755 %{name} -D %buildroot/%{_gamesbindir}/%{name}
+make install gamesdir=$RPM_BUILD_ROOT%{_gamesbindir} gamedatadir=$RPM_BUILD_ROOT%{_gamesdatadir}/%name
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
-Exec=%{_gamesbindir}/%{name}                
+Exec=%{_gamesbindir}/%{name}
 Icon=arcade_section
-Categories=Game;ArcadeGame;                
-Name=Asteroids3D                
+Categories=Game;ArcadeGame;
+Name=Asteroids3D
 Comment=%{Summary}
 EOF
 
@@ -58,8 +56,9 @@ rm -fr %buildroot
 
 %files
 %defattr (644,root,root,755)
-%doc CHANGELOG COPYRIGHT README
+%doc COPYRIGHT README.html 
 %{_datadir}/applications/mandriva-%{name}.desktop
+%{_gamesdatadir}/%name
 %defattr (755,root,root,755)
 %{_gamesbindir}/%{name}
 
