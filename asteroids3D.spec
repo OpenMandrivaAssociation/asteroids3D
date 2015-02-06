@@ -1,6 +1,6 @@
 %define	name	asteroids3D
 %define	version	0.5.1
-%define	release	3
+%define release	4
 %define	Summary	A 3D, first-person game of blowing up asteroids
 
 Name:		%{name}
