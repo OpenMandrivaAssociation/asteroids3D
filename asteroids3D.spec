@@ -1,6 +1,4 @@
-%define	name	asteroids3D
-%define	version	0.5.1
-%define release	4
+
 Name:		asteroids3D
 Summary:	Summary	A 3D, first-person game of blowing up asteroids
 Version:	1.0
