@@ -27,3 +27,6 @@ targeted asteroid and provide information about closure rate.
 %make_install
 
 %files
+%{_bindir}/asteroids3D
+%{_datadir}/applications/asteroids3D.desktop
+%{_datadir}/asteroids3D/
