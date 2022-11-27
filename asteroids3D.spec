@@ -20,30 +20,11 @@ targeted asteroid and provide information about closure rate.
 %setup -q 
 
 %build
-%configure --with-gamesdir=%_gamesbindir --with-gamedatadir=%_gamesdatadir/%name
-%make
+%configure
+%make_build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install gamesdir=$RPM_BUILD_ROOT%{_gamesbindir} gamedatadir=$RPM_BUILD_ROOT%{_gamesdatadir}/%name
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
-cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
-[Desktop Entry]
-Type=Application
-Exec=%{_gamesbindir}/%{name}
-Icon=arcade_section
-Categories=Game;ArcadeGame;
-Name=Asteroids3D
-Comment=%{Summary}
-EOF
+%make_install
 
 %files
-%doc COPYRIGHT README.html 
-%{_datadir}/applications/mandriva-%{name}.desktop
-%{_gamesdatadir}/%name
-%defattr (755,root,root,755)
-%{_gamesbindir}/%{name}
-
-
-
+%doc COPYRIGHT README.html
