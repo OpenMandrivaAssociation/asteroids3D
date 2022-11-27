@@ -1,15 +1,13 @@
 %define	name	asteroids3D
 %define	version	0.5.1
 %define release	4
-%define	Summary	A 3D, first-person game of blowing up asteroids
-
-Name:		%{name}
-Summary:	%{Summary}
-Version:	%{version}
-Release:	%{release}
+Name:		asteroids3D
+Summary:	Summary	A 3D, first-person game of blowing up asteroids
+Version:	1.0
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
-Source:		https://sourceforge.net/projects/a3d/%name-%version.tar.bz2
+Source:		https://sourceforge.net/projects/a3d/files/asteroids3D-%{version}.tar.xz
 URL:		https://sourceforge.net/projects/a3d/	
 BuildRequires:	mesa-common-devel
 
