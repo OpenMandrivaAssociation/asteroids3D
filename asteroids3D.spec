@@ -27,4 +27,3 @@ targeted asteroid and provide information about closure rate.
 %make_install
 
 %files
-%doc COPYRIGHT README.html
