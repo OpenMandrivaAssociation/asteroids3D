@@ -1,15 +1,11 @@
-%define	name	asteroids3D
-%define	version	0.5.1
-%define release	4
-%define	Summary	A 3D, first-person game of blowing up asteroids
 
-Name:		%{name}
-Summary:	%{Summary}
-Version:	%{version}
-Release:	%{release}
+Name:		asteroids3D
+Summary:	Summary	A 3D, first-person game of blowing up asteroids
+Version:	1.0
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
-Source:		https://sourceforge.net/projects/a3d/%name-%version.tar.bz2
+Source:		https://sourceforge.net/projects/a3d/files/asteroids3D-%{version}.tar.xz
 URL:		https://sourceforge.net/projects/a3d/	
 BuildRequires:	mesa-common-devel
 
@@ -22,30 +18,13 @@ targeted asteroid and provide information about closure rate.
 %setup -q 
 
 %build
-%configure --with-gamesdir=%_gamesbindir --with-gamedatadir=%_gamesdatadir/%name
-%make
+%configure --with-gamesdir=%{_bindir} --with-gamedatadir=%{_datadir}/%name
+%make_build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install gamesdir=$RPM_BUILD_ROOT%{_gamesbindir} gamedatadir=$RPM_BUILD_ROOT%{_gamesdatadir}/%name
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
-cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
-[Desktop Entry]
-Type=Application
-Exec=%{_gamesbindir}/%{name}
-Icon=arcade_section
-Categories=Game;ArcadeGame;
-Name=Asteroids3D
-Comment=%{Summary}
-EOF
+%make_install
 
 %files
-%doc COPYRIGHT README.html 
-%{_datadir}/applications/mandriva-%{name}.desktop
-%{_gamesdatadir}/%name
-%defattr (755,root,root,755)
-%{_gamesbindir}/%{name}
-
-
-
+%{_bindir}/asteroids3D
+%{_datadir}/applications/asteroids3D.desktop
+%{_datadir}/asteroids3D/
