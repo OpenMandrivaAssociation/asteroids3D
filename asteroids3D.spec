@@ -20,7 +20,7 @@ targeted asteroid and provide information about closure rate.
 %setup -q 
 
 %build
-%configure
+%configure --with-gamesdir=%{_bindir} --with-gamedatadir=%{_datadir}/%name
 %make_build
 
 %install
