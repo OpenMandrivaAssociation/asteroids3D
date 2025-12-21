@@ -7,6 +7,11 @@ License:	GPLv2+
 Group:		Games/Arcade
 Source:		https://sourceforge.net/projects/a3d/files/asteroids3D-%{version}.tar.xz
 URL:		https://sourceforge.net/projects/a3d/	
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	mesa-common-devel
 
 %description
